@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    container_name: web
+    hostname: web
+    build:
+      context: ./app
+    ports:
+      - "5000:5000"
+    networks: 
+      - lab01
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    hostname: redis
+    networks: 
+      - lab01
+
+networks:
+  lab01:
+    external: true
