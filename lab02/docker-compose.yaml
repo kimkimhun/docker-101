@@ -1,0 +1,32 @@
+version: "3"
+services:
+  main-nginx:
+    image: nginx:1.16.0
+    container_name: main-nginx
+    hostname: main-nginx
+    ports:
+    - "80:80"
+    networks: 
+    - lab02
+    volumes: 
+      - "./nginx-config:/etc/nginx/conf.d"
+  web-a:
+    image: nginx:1.16.0
+    container_name: web-a
+    hostname: web-a
+    volumes: 
+      - "./web-a/html:/usr/share/nginx/html"
+    networks: 
+    - lab02
+  web-b:
+    image: nginx:1.16.0
+    container_name: web-b
+    hostname: web-b
+    volumes: 
+      - "./web-b/html:/usr/share/nginx/html"
+    networks: 
+    - lab02
+
+networks:
+  lab02:
+    external: true
